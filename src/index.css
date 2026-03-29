@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,61 +6,60 @@
 
 @layer base {
   :root {
-    --background: 220 20% 7%;
-    --foreground: 210 20% 92%;
+    --background: 0 0% 97%;
+    --foreground: 0 0% 8%;
 
-    --card: 220 18% 10%;
-    --card-foreground: 210 20% 92%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
 
-    --popover: 220 18% 12%;
-    --popover-foreground: 210 20% 92%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
 
-    --primary: 142 70% 45%;
-    --primary-foreground: 220 20% 7%;
+    --primary: 72 85% 50%;
+    --primary-foreground: 0 0% 8%;
 
-    --secondary: 220 16% 16%;
-    --secondary-foreground: 210 20% 85%;
+    --secondary: 0 0% 93%;
+    --secondary-foreground: 0 0% 30%;
 
-    --muted: 220 14% 14%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 220 16% 18%;
-    --accent-foreground: 210 20% 92%;
+    --accent: 72 85% 50%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 14% 18%;
-    --input: 220 14% 18%;
-    --ring: 142 70% 45%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 72 85% 50%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
     /* Status colors */
-    --status-safe: 142 70% 45%;
+    --status-safe: 142 70% 40%;
     --status-warning: 45 93% 47%;
     --status-danger: 0 72% 51%;
-    --status-safe-bg: 142 70% 45% / 0.1;
-    --status-warning-bg: 45 93% 47% / 0.1;
-    --status-danger-bg: 0 72% 51% / 0.1;
+    --status-safe-bg: 142 70% 40% / 0.08;
+    --status-warning-bg: 45 93% 47% / 0.08;
+    --status-danger-bg: 0 72% 51% / 0.08;
 
-    /* Dashboard specific */
-    --glow-safe: 0 0 30px hsl(142 70% 45% / 0.3);
-    --glow-warning: 0 0 30px hsl(45 93% 47% / 0.3);
-    --glow-danger: 0 0 30px hsl(0 72% 51% / 0.3);
+    /* Lime accent */
+    --lime: 72 85% 50%;
+    --lime-light: 72 85% 92%;
 
-    --surface-1: 220 18% 10%;
-    --surface-2: 220 16% 13%;
-    --surface-3: 220 14% 16%;
+    --surface-1: 0 0% 100%;
+    --surface-2: 0 0% 96%;
+    --surface-3: 0 0% 93%;
 
-    --sidebar-background: 220 18% 8%;
-    --sidebar-foreground: 210 20% 85%;
-    --sidebar-primary: 142 70% 45%;
-    --sidebar-primary-foreground: 220 20% 7%;
-    --sidebar-accent: 220 16% 16%;
-    --sidebar-accent-foreground: 210 20% 92%;
-    --sidebar-border: 220 14% 18%;
-    --sidebar-ring: 142 70% 45%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 30%;
+    --sidebar-primary: 72 85% 50%;
+    --sidebar-primary-foreground: 0 0% 8%;
+    --sidebar-accent: 0 0% 95%;
+    --sidebar-accent-foreground: 0 0% 8%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 72 85% 50%;
   }
 }
 
@@ -69,8 +68,11 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans;
-    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
   }
 }
 
@@ -78,22 +80,16 @@
   .font-mono {
     font-family: 'JetBrains Mono', monospace;
   }
-  .glow-safe {
-    box-shadow: var(--glow-safe);
-  }
-  .glow-warning {
-    box-shadow: var(--glow-warning);
-  }
-  .glow-danger {
-    box-shadow: var(--glow-danger);
+  .font-display {
+    font-family: 'Space Grotesk', sans-serif;
   }
   .status-gradient-safe {
-    background: linear-gradient(135deg, hsl(142 70% 45% / 0.15), hsl(142 70% 45% / 0.05));
+    background: linear-gradient(135deg, hsl(142 70% 40% / 0.08), hsl(142 70% 40% / 0.03));
   }
   .status-gradient-warning {
-    background: linear-gradient(135deg, hsl(45 93% 47% / 0.15), hsl(45 93% 47% / 0.05));
+    background: linear-gradient(135deg, hsl(45 93% 47% / 0.08), hsl(45 93% 47% / 0.03));
   }
   .status-gradient-danger {
-    background: linear-gradient(135deg, hsl(0 72% 51% / 0.15), hsl(0 72% 51% / 0.05));
+    background: linear-gradient(135deg, hsl(0 72% 51% / 0.08), hsl(0 72% 51% / 0.03));
   }
 }
