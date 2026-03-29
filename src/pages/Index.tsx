@@ -33,23 +33,27 @@ const AppShell = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col max-w-lg mx-auto">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border px-4 py-3">
-        <div className="flex items-center gap-2">
-          <div className="h-7 w-7 rounded-lg bg-primary/20 flex items-center justify-center">
-            <Gauge className="h-4 w-4 text-primary" />
+      <header className="sticky top-0 z-50 bg-card border-b border-border px-5 py-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-xl font-bold font-display text-foreground tracking-tight">
+              {tabs.find(t => t.id === activeTab)?.label === '控制台' ? 'CashFlow Control' : tabs.find(t => t.id === activeTab)?.label}
+            </h1>
+            <p className="text-xs text-muted-foreground mt-0.5">个人现金流控制系统</p>
           </div>
-          <h1 className="text-sm font-semibold text-foreground tracking-tight">CashFlow Control</h1>
-          <span className="text-[10px] text-muted-foreground bg-muted px-1.5 py-0.5 rounded-full ml-1">v1.0</span>
+          <div className="h-8 w-8 rounded-full bg-foreground flex items-center justify-center">
+            <span className="text-xs font-bold text-card">CF</span>
+          </div>
         </div>
       </header>
 
       {/* Content */}
-      <main className="flex-1 px-4 py-4 pb-20 overflow-y-auto">
+      <main className="flex-1 px-4 py-5 pb-24 overflow-y-auto">
         {renderView()}
       </main>
 
       {/* Bottom nav */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-xl border-t border-border">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border">
         <div className="max-w-lg mx-auto flex">
           {tabs.map(tab => {
             const Icon = tab.icon;
@@ -58,13 +62,14 @@ const AppShell = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex-1 flex flex-col items-center gap-0.5 py-2.5 transition-colors ${
-                  isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
+                className={`flex-1 flex flex-col items-center gap-1 py-3 transition-all ${
+                  isActive ? 'text-foreground' : 'text-muted-foreground'
                 }`}
               >
-                <Icon className="h-5 w-5" />
+                <div className={`p-1.5 rounded-xl transition-all ${isActive ? 'bg-primary' : ''}`}>
+                  <Icon className={`h-4 w-4 ${isActive ? 'text-primary-foreground' : ''}`} />
+                </div>
                 <span className="text-[10px] font-medium">{tab.label}</span>
-                {isActive && <div className="h-0.5 w-4 rounded-full bg-primary mt-0.5" />}
               </button>
             );
           })}
