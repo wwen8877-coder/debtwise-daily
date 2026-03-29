@@ -6,6 +6,7 @@ interface FinanceContextType {
   state: AppState;
   setCash: (amount: number) => void;
   addDebt: (debt: Omit<Debt, 'id' | 'createdAt'>) => void;
+
   removeDebt: (id: string) => void;
   updateDebt: (debt: Debt) => void;
   addExpense: (amount: number, note?: string) => void;

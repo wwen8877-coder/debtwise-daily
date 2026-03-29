@@ -55,7 +55,8 @@ export function getUpcomingDebts(debts: Debt[]): (Debt & { nextDueDate: Date; da
 export function calculateDailyLimit(state: AppState): number {
   if (state.austerityMode) return AUSTERITY_LIMIT;
 
-  const upcoming = getUpcomingDebts(state.debts);
+  const unpaidDebts = state.debts.filter(d => !d.isPaidThisMonth);
+  const upcoming = getUpcomingDebts(unpaidDebts);
   if (upcoming.length === 0) {
     // No debts, simple division over 30 days
     return Math.max(MIN_DAILY_LIMIT, Math.round((state.currentCash * RISK_FACTOR) / 30));
