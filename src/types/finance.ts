@@ -1,8 +1,14 @@
+export type BillingCycle = 'yearly' | 'monthly' | 'daily';
+
 export interface Debt {
   id: string;
   platform: string;
   amount: number;
   dueDay: number; // 1-31
+  billingCycle: BillingCycle;
+  hasInstallment: boolean;
+  installmentPeriods?: number;
+  isPaidThisMonth: boolean;
   createdAt: string;
 }
 
