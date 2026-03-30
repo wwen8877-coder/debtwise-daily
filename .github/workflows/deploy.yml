@@ -1,48 +1,33 @@
 name: Deploy to GitHub Pages
 
+# 推送代码到main分支时自动部署
 on:
   push:
-    branches:
-      - main
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    branches: [ main ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
-      - name: Checkout
+      - name: 拉取代码
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: 安装Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20.x
+          cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install
+      - name: 安装项目依赖
+        run: npm ci
 
-      - name: Build project
+      - name: 构建项目
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: 部署到GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
-      - name: Deploy to Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
